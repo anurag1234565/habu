@@ -77,13 +77,13 @@ public class UI {
 
 		// create north panel
 		northPanel = new JPanel();
-		northPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		northPanel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		northPanel.setLayout(northBorderLayout);
 
 
 		// create south panel
 		southPanel = new JPanel();
-		southPanel.setLayout(new GridLayout(2, 1));
+		southPanel.setLayout(new GridLayout(1, 1));
 
 		// create south - top and bottom panels
 		southBottomPanel = new JPanel();
@@ -91,7 +91,7 @@ public class UI {
 
 		//create the centre panel
 		centralPanel = new JPanel();
-		centralPanel.setBorder(new EmptyBorder(10, 10, 0, 10));
+		centralPanel.setBorder(new EmptyBorder(5, 5, 0, 5));
 		centralPanel.setLayout(new GridLayout(1, 1));
 
 		// fill the whole center of topPanel with text area

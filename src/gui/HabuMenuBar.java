@@ -73,21 +73,21 @@ public class HabuMenuBar extends JMenuBar {
 
 	public void setupFileMenu(){
 		// file menu items
-		newMenuItem = new JMenuItem("New");
+		newMenuItem = new JMenuItem("New <CTRL+N>");
 		newMenuItem.setMnemonic(KeyEvent.VK_N);
 		newMenuItem.setActionCommand("New");
 		fileMenu.add(newMenuItem);
 
-		openMenuItem = new JMenuItem("Open");
+		openMenuItem = new JMenuItem("Open <CTRL+O>");
 		openMenuItem.setActionCommand("Open");
 		fileMenu.add(openMenuItem);
 
 
-		saveAsMenuItem = new JMenuItem("Save As");
+		saveAsMenuItem = new JMenuItem("Save As <CTRL+S>");
 		saveAsMenuItem.setActionCommand("Save As");
 		fileMenu.add(saveAsMenuItem);
 
-		exitMenuItem = new JMenuItem("Exit");
+		exitMenuItem = new JMenuItem("Exit <ALT+F4>");
 		exitMenuItem.setActionCommand("Exit");
 		fileMenu.add(exitMenuItem);
 		//
