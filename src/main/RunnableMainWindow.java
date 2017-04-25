@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -24,10 +25,14 @@ public class RunnableMainWindow {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		init();
-		addKeyListeners();
-		mainWin.setVisible(true);
+		Runnable r = new Runnable() {
+			public void run() {
+				init();
+				addKeyListeners();
+				mainWin.setVisible(true);
+			}
+		};
+		EventQueue.invokeLater(r);
 	}
 	
 	private static void addKeyListeners(){

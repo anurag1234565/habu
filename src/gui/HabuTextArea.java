@@ -83,41 +83,36 @@ public class HabuTextArea {
 		textAreaInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "saveText");
 		textAreaActionMap.put("saveText", new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
-					File file = new File(ui.fileNameField.getText());
-					if (file.exists())
-						try {
-							HabuWindow.writeTextAreaToFile(
-									file,
-									textArea.getText(), ui.frame);
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					else
-						try {
-							HabuWindow.writeTextAreaToFile(
-									ui.fileFromChooser(),
-									textArea.getText(), ui.frame);
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+				File file = new File(ui.fileNameField.getText());
+				if (!file.exists())
+					file = ui.fileFromChooser();
+				try {
+					HabuWindow.writeTextAreaToFile(
+							file,
+							textArea.getText(), ui.frame);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				ui.statusLabel.setText("File saved");
+				ui.fileNameField.setText(file.getAbsolutePath());
 			}
 		});
 		
 		textAreaInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK), "openFile");
 		textAreaActionMap.put("openFile", new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
-				HabuWindow.showFileInTextArea(ui.fileFromChooser(), textArea, ui.frame);
+				File file = ui.fileFromChooser();
+				HabuWindow.showFileInTextArea(file, textArea, ui.frame);
+				ui.fileNameField.setText(file.getAbsolutePath());
 				ui.statusLabel.setText("File opened");
 				bufferSaved = true;
 			}
 		});
 		
 		
-		textAreaInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK), "openFile");
-		textAreaActionMap.put("openFile", new AbstractAction() {
+		textAreaInputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK), "newFile");
+		textAreaActionMap.put("newFile", new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				textArea.setText("");
 				ui.fileNameField.setText("");
