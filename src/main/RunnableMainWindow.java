@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+
+import javax.swing.JTextArea;
 
 import gui.HabuWindow;
 import gui.UI;
@@ -21,13 +24,27 @@ public class RunnableMainWindow {
 		ui.setupUI();
 	}
 	
+	private static void init(String filename){
+		mainWin = new HabuWindow("Habu Text Editor");
+		mainWin.setSize(800, 600);
+		ui = new UI(mainWin);
+		ui.setupUI();
+		File file = new File(filename);
+		HabuWindow.showFileInTextArea(file, ui.habuTextArea.textArea, ui.frame);
+	}
+	
 	/**
-	 * @param args
+	 * @param args file name to open the editor with 
 	 */
 	public static void main(String[] args) {
 		Runnable r = new Runnable() {
 			public void run() {
-				init();
+				if(args.length == 0) {
+					init();
+				}
+				else{
+					init(args[0]);
+				}
 				addKeyListeners();
 				mainWin.setVisible(true);
 			}
