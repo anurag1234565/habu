@@ -15,32 +15,31 @@ public class RunnableMainWindow {
 	
 	private static HabuWindow mainWin;
 	private static UI ui;
-
-	private static void init(){
-		mainWin = new HabuWindow("Habu Text Editor");
-		mainWin.setSize(800, 600);
-		
-		ui = new UI(mainWin);
-		ui.setupUI();
-	}
 	
 	private static void init(String filename){
 		mainWin = new HabuWindow("Habu Text Editor");
 		mainWin.setSize(800, 600);
 		ui = new UI(mainWin);
 		ui.setupUI();
+		
+		// if file name is given
+		if(filename.length() > 0){
+			
 		File file = new File(filename);
-		HabuWindow.showFileInTextArea(file, ui.habuTextArea.textArea, ui.frame);
+		HabuWindow.showFileInTextArea(file, ui.habuTextArea.textArea, ui.frame);  // opening the file
+		ui.fileNameField.setText(file.getAbsolutePath());  // setting path of file in filename file
+		ui.habuTextArea.textArea.requestFocus(); // requests focus 
+		}
 	}
 	
 	/**
-	 * @param args file name to open the editor with 
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		Runnable r = new Runnable() {
 			public void run() {
 				if(args.length == 0) {
-					init();
+					init("");
 				}
 				else{
 					init(args[0]);
